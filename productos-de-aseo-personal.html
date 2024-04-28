@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+
+
+<body>
+    <h1><hr></h1><br>
+
+
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="style.css">
+            <img src="img\supermercado-xyz.jpg" class="img-sup">
+        </head>
+<body>
+    <body>
+    <div class="toolbar">
+        <ul>
+            <li><a href="Supermercado.html">INICIO</a></li>
+            <li><a href="alimentos.html">ALIMENTOS</a></li>
+            <li><a href="productos-de-aseo.html">PRODUCTOS DE ASEO</a></li>
+            <li><a href="productos-de-aseo-personal.html">PRODUCTOS DE ASEO PERSONAL</a></li>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos...">
+                <button onclick="searchProducts()">Buscar</button>
+            </div>
+        </ul>
+    </div>
+    <h3><br> EN SUPERMERCADO XYZ ENCUENTRAS TUS PRODUCTOS FAVORITOS EN ASEO PERSONAL</h3><html lang="en"><br>
+
+
+    <div class="contenedor" id="productContainer">
+        <!-- Aquí se cargarán los productos dinámicamente -->
+    </div>
+    <div id="cart"><br><hr>
+        <h4>FACTURA</h4>
+        <ul id="cartItems">
+            <!-- Aquí se agregarán los elementos del carrito -->
+        </ul>
+        <button onclick="checkout()">Pagar</button>
+    </div>
+    <script>
+        // Lista de productos
+        var products = [
+        {
+                name: "Shampoo Head & Shoulders",
+                peso: "375ml",
+                price:   25000,
+                image: src="img/shampoo.jpg" // Corregido
+            },
+            {
+                name: "Jabon Dove",  
+                peso: "3 Unidades",
+                price:   17000,
+                image: src="img/jabon.jpg" // Corregido
+            },
+            {
+                name: "Papel Higienico Familia",
+                peso: "4 Unidades",
+                price:   8500,
+                image: src="img/Papel-Higienico.jpg" // Corregido
+            },
+            {
+                name: "Cepillo de dientes",
+                peso: "4 Unidades",
+                price:   15000,
+                image: src="img/cepillo-de-dientes.jpg" // Corregido
+            },
+            {
+                name: "Crema Colgate",
+                peso: "150ml",
+                price:   12000,
+                image: src="img/crema-colgate.jpg" // Corregido
+            },
+            {
+                name: "Listerine",
+                peso: "1L",
+                price:   39000,
+                image: src="img/listerine.jpg" // Corregido
+            },
+           
+        ];
+
+
+        function showProducts() {
+            var productContainer = document.getElementById("productContainer");
+            productContainer.innerHTML = "";
+            products.forEach(function(product) {
+                var productHTML = `
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title">${product.name}</h2>
+                            <hr>
+                            <p class="card-description">
+                                <h4>${product.peso}</h4>
+                                <br>
+                                <h3>precio:</h3>
+                                <hr>
+                                <h1>$ ${product.price}</h1>
+                            </p>
+                            <button onclick="addToCart('${product.name}', ${product.price})">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                `;
+                productContainer.innerHTML += productHTML;
+            });
+        }
+
+
+        // Función para agregar elementos al carrito
+        var cartItems = [];
+        function addToCart(name, price) {
+            cartItems.push({ name: name, price: price });
+            updateCart();
+        }
+
+
+        // Función para actualizar el contenido del carrito
+        function updateCart() {
+            var cartList = document.getElementById("cartItems");
+            cartList.innerHTML = "";
+            var total = 0;
+            cartItems.forEach(function(item) {
+                var itemHTML = `<li>${item.name} - $${item.price}</li>`;
+                cartList.innerHTML += itemHTML;
+                total += item.price;
+            });
+            cartList.innerHTML += `<li>Total: $${total}</li>`;
+        }
+
+
+        // Función para realizar el pago
+        function checkout() {
+            // Aquí puedes implementar la lógica para procesar el pago
+            alert("Gracias por tu compra");
+            cartItems = []; // Limpiar el carrito después de la compra
+            updateCart();
+        }
+
+
+        // Función de búsqueda de productos
+        function searchProducts() {
+            var searchText = document.getElementById("searchInput").value.toUpperCase();
+            var cards = document.querySelectorAll(".card");
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                var title = card.querySelector(".card-title").innerText.toUpperCase();
+                if (title.indexOf(searchText) > -1) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+
+
+        // Mostrar productos al cargar la página
+        window.onload = function() {
+            showProducts();
+        };
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+
+
+<body>
+    <h1><hr></h1><br>
+   
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="style.css">
+            <img src="img\supermercado-xyz.jpg" class="img-sup">
+        </head>
+<body>
+    <body>
+    <div class="toolbar">
+        <ul>
+            <li><a href="Supermercado.html">INICIO</a></li>
+            <li><a href="alimentos.html">ALIMENTOS</a></li>
+            <li><a href="productos-de-aseo.html">PRODUCTOS DE ASEO</a></li>
+            <li><a href="productos-de-aseo-personal.html">PRODUCTOS DE ASEO PERSONAL</a></li>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos...">
+                <button onclick="searchProducts()">Buscar</button>
+            </div>
+        </ul>
+    </div>
+   
+    <h3> <br>BIENVENIDOS AL SUPERMERCADO XYZ: COMPRA TUS PRODUCTOS FAVORITOS EN LÍNEA</h3><html lang="en"><br>
+   
+    <div class="contenedor" id="productContainer">
+        <!-- Aquí se cargarán los productos dinámicamente -->
+    </div>
+    <div id="cart"><br><hr>
+        <h4>FACTURA</h4>
+        <ul id="cartItems">
+            <!-- Aquí se agregarán los elementos del carrito -->
+        </ul>
+        <button onclick="checkout()">Pagar</button>
+    </div>
+    <script>
+        // Lista de productos
+        var products = [
+            {
+                name: "ARROZ COSTEÑO",
+                peso: "1000gr",
+                price: 4000,
+                image: src="img/arroz.jpg"
+            },
+            {
+                name: "Aceite de Oliva",
+                peso: "1L",
+                price: 40000,
+                image: src="img/aceite-de-oliva.jpg"
+            },
+            // Agrega más productos aquí
+            {
+                name: "AZUCAR MANUELITA",
+                peso: "1000gr",
+                price: 4900,
+                image: src="img/azucar.jpg" // Corregido
+            },
+            {
+                name: "Cafe",
+                peso: "1000gr",
+                price: 12000,
+                image: src="img/CAFE.jpg" // Corregido
+            },
+            {
+                name: "Harina Pan",
+                peso: "1000gr",
+                price:  3200,
+                image: src="img/arina-pan.jpg" // Corregido
+            },
+            {
+                name: "Sal",
+                peso: "1000gr",
+                price:   2500,
+                image: src="img/sal.jpg" // Corregido
+            },
+            {
+                name: "Atun",
+                peso: "140gr",
+                price:   6000,
+                image: src="img/atun.jpg" // Corregido
+            },
+            {
+                name: "Mayonesa Mavesa",
+                peso: "500gr",
+                price:   21900,
+                image: src="img/mayonesa.jpg" // Corregido
+            },
+            {
+                name: "Panela",
+                peso: "1000gr",
+                price:   6000,
+                image: src="img/panela.jpg" // Corregido
+            },
+            {
+                name: "Spaguetti Doria",
+                peso: "1000gr",
+                price:   6100,
+                image: src="img/pasta.jpg" // Corregido
+            },
+            {
+                name: "Salsa de Tomate",
+                peso: "500gr",
+                price:   19000,
+                image: src="img/salsa-de-tomate.jpg" // Corregido
+            },
+            {
+                name: "Aromatica de Manzanilla Frescampo",
+                peso: "15gr",
+                price:   2500,
+                image: src="img/Aromatica.jpg" // Corregido
+            },
+            {
+                name: "Shampoo Head & Shoulders",
+                peso: "375ml",
+                price:   25000,
+                image: src="img/shampoo.jpg" // Corregido
+            },
+            {
+                name: "Jabon Dove",  
+                peso: "3 Unidades",
+                price:   17000,
+                image: src="img/jabon.jpg" // Corregido
+            },
+            {
+                name: "Papel Higienico Familia",
+                peso: "4 Unidades",
+                price:   8500,
+                image: src="img/Papel-Higienico.jpg" // Corregido
+            },
+            {
+                name: "Balde",  
+                peso: "1 Unidad",
+                price:   10000,
+                image: src="img/balde.jpg" // Corregido
+            },
+            {
+                name: "Cepillo de dientes",
+                peso: "4 Unidades",
+                price:   15000,
+                image: src="img/cepillo-de-dientes.jpg" // Corregido
+            },
+            {
+                name: "Crema Colgate",
+                peso: "150ml",
+                price:   12000,
+                image: src="img/crema-colgate.jpg" // Corregido
+            },
+            {
+                name: "Jabon Fav",
+                peso: "4kg",
+                price:   28600,
+                image: src="img/fab.jpg" // Corregido
+            },
+            {
+                name: "Jabon Liquido Axion",
+                peso: "400ml",
+                price:   8300,
+                image: src="img/jabon-de-cocina.jpg" // Corregido
+            },  
+            {
+                name: "Listerine",
+                peso: "1L",
+                price:   39000,
+                image: src="img/listerine.jpg" // Corregido
+            },
+            {
+                name: "Palo de Trapero",
+                peso: "1 Unidad",
+                price:   3000,
+                image: src="img/palo de escoba.jpg" // Corregido
+            },
+            {
+                name: "Trapero",
+                peso: "1 Unidad",
+                price:   15000,
+                image: src="img/trapero.jpg" // Corregido
+            },
+        ];
+
+
+        function showProducts() {
+            var productContainer = document.getElementById("productContainer");
+            productContainer.innerHTML = "";
+            products.forEach(function(product) {
+                var productHTML = `
+                    <div class="card">
+                        <div class="card-header">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title">${product.name}</h2>
+                            <hr>
+                            <p class="card-description">
+                                <h5>${product.peso}</h5>
+                                <br>
+                                <h3>precio:</h3>
+                                <hr>
+                                <h1>$ ${product.price}</h1>
+                            </p>
+                            <button onclick="addToCart('${product.name}', ${product.price})">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                `;
+                productContainer.innerHTML += productHTML;
+            });
+        }
+
+
+       
+        var cartItems = [];
+
+
+        function addToCart(name, price) {
+            cartItems.push({ name: name, price: price });
+            updateCart();
+        }
+
+
+        function updateCart() {
+            var cartList = document.getElementById("cartItems");
+            cartList.innerHTML = "";
+            var total = 0;
+            cartItems.forEach(function(item) {
+                var itemHTML = `<li>${item.name} -<br> $${item.price}</li>`;
+                cartList.innerHTML += itemHTML;
+                total += item.price;
+            });
+            cartList.innerHTML += `<li><strong> <br>Total: $${total}</strong></li>`;
+        }
+   
+
+
+        // Función para realizar el pago
+        function checkout() {
+            // Aquí puedes implementar la lógica para procesar el pago
+            alert("Gracias por tu compra");
+            cartItems = []; // Limpiar el carrito después de la compra
+            updateCart();
+        }
+
+
+        // Función de búsqueda de productos
+        function searchProducts() {
+            var searchText = document.getElementById("searchInput").value.toUpperCase();
+            var cards = document.querySelectorAll(".card");
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                var title = card.querySelector(".card-title").innerText.toUpperCase();
+                if (title.indexOf(searchText) > -1) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+
+
+        // Mostrar productos al cargar la página
+        window.onload = function() {
+            showProducts();
+        };
+    </script>
+
+
+</body>
+</html>
+
